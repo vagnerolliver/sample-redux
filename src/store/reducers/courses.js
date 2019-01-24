@@ -1,17 +1,36 @@
 import { combineReducers } from "redux";
 import { allCoursesLoaded } from "../actions/actions";
 
+const courses = (state, action) => {
+    switch (action.type) {
+        case 'add_cart':
+            return {
+                ...state,
+                inventory: state.inventory - 1
+            }
+        default:
+            return state
+    }
+}
+
 const byId = (state = {}, action) => {
     switch (action.type) {
         case allCoursesLoaded:
             return {
                 ...state,
-                ...action.courses.reduce((obj, course) => {
-                    obj[course.id] = course
+                ...action.courses.reduce((obj, product) => {
+                    obj[product.id] = product
                     return obj
                 }, {})
             }
         default:
+            const { productId } = action
+            if (productId) {
+                return {
+                    ...state,
+                    [productId]: courses(state[productId], action)
+                }
+            }
             return state
     }
 }

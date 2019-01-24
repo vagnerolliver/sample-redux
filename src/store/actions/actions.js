@@ -9,7 +9,7 @@ const coursesLoad = courses => ({
 })
 
 export const requestAllCourses = () => dispatch => {
-    shop.getProducts(courses => {
+    shop.getCourses(courses => {
         dispatch(coursesLoad(courses))
     })
 }

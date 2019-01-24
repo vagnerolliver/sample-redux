@@ -16,17 +16,8 @@ const CoursesContainer = ({ courses }) => (
     </CoursesList>
 )
 
-CoursesContainer.propTypes = {
-    courses: PropTypes.arrayOf(PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        title: PropTypes.string.isRequired,
-        price: PropTypes.number.isRequired,
-        inventory: PropTypes.number.isRequired
-    })).isRequired
-}
-
 const mapStateToProps = state => ({
-    curses: getVisibleCourses(state.courses)
+    courses: getVisibleCourses(state.courses)
 })
 
 export default connect(mapStateToProps)(CoursesContainer)

@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 import Course from './Course'
 
@@ -15,14 +14,5 @@ const CourseItem = ({ course }) => (
         </button>
     </div>
 )
-
-CourseItem.propTypes = {
-    course: PropTypes.shape({
-        title: PropTypes.string.isRequired,
-        price: PropTypes.number.isRequired,
-        inventory: PropTypes.number.isRequired
-    }).isRequired,
-    onAddToCartClicked: PropTypes.func.isRequired
-}
 
 export default CourseItem

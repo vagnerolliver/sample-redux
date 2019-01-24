@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 const CoursesList = ({ title, children }) => (
     <div>
@@ -7,10 +6,5 @@ const CoursesList = ({ title, children }) => (
         <div>{children}</div>
     </div>
 )
-
-CoursesList.propTypes = {
-    children: PropTypes.node,
-    title: PropTypes.string.isRequired
-}
 
 export default CoursesList

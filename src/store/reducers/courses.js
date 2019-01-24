@@ -1,18 +1,6 @@
 import { combineReducers } from "redux";
 import { allCoursesLoaded } from "../actions/actions";
 
-const courses = (state, action) => {
-    switch (action.type) {
-        case 'empty':
-            return {
-                ...state,
-                inventory: state.inventory - 1
-            }
-        default:
-            return state
-    }
-}
-
 const byId = (state = {}, action) => {
     switch (action.type) {
         case allCoursesLoaded:

@@ -22,8 +22,7 @@ CoursesContainer.propTypes = {
         title: PropTypes.string.isRequired,
         price: PropTypes.number.isRequired,
         inventory: PropTypes.number.isRequired
-    })).isRequired,
-    addToCart: PropTypes.func.isRequired
+    })).isRequired
 }
 
 const mapStateToProps = state => ({

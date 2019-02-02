@@ -7,12 +7,9 @@ import reducer from './store'
 import App from './containers/App';
 
 import './index.css';
-import { requestAllCourses } from "./store/actions";
 import { composeWithDevTools } from "redux-devtools-extension";
 
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)))
-
-store.dispatch(requestAllCourses())
 
 render(
     <Provider store={store}>

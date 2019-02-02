@@ -9,12 +9,13 @@ import App from './containers/App';
 import './index.css';
 import { createLogger } from "redux-logger";
 import { requestAllCourses } from "./store/actions/actions";
+import { composeWithDevTools } from "redux-devtools-extension";
 
 const middleware = [ thunk ];
 if (process.env.NODE_ENV !== 'production') {
     middleware.push(createLogger());
 }
-const store = createStore(reducer, applyMiddleware(thunk))
+const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)))
 
 store.dispatch(requestAllCourses())
 

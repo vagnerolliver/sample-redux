@@ -1,8 +1,8 @@
 import React from 'react'
 
-const Course = ({ price, quantity, title }) => (
+const Course = ({ category, description}) => (
     <div>
-        {title} - &#36;{price}{quantity ? ` x ${quantity}` : null}
+        {category} - {description}
     </div>
 )
 

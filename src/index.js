@@ -1,20 +1,15 @@
 import React from 'react';
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
-import { createStore, applyMiddleware } from 'redux'
+import { applyMiddleware, createStore } from 'redux'
 import thunk from 'redux-thunk'
-import reducer from './store/reducers'
+import reducer from './store'
 import App from './containers/App';
 
 import './index.css';
-import { createLogger } from "redux-logger";
-import { requestAllCourses } from "./store/actions/actions";
+import { requestAllCourses } from "./store/actions";
 import { composeWithDevTools } from "redux-devtools-extension";
 
-const middleware = [ thunk ];
-if (process.env.NODE_ENV !== 'production') {
-    middleware.push(createLogger());
-}
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)))
 
 store.dispatch(requestAllCourses())

@@ -4,26 +4,29 @@ export const coursesRequest = "[Courses Request] All Courses Requested";
 export const coursesSuccess = "[Courses Response Success] Success";
 export const coursesFailure = "[Courses Response Failure] Failure";
 
-export const coursesAllRequest = ()=> ({
+export const coursesAllRequest = () => ({
     type: coursesRequest,
 })
 
-export const coursesRequestFailure = () => ({
+export const coursesResponseFailure = error => ({
     type: coursesFailure,
+    payload: error,
 })
 
-export const coursesRequestSuccess = data => ({
+export const coursesResponseSuccess = data => ({
     type: coursesSuccess,
     payload: data,
 })
 
-export const getCourses = () => dispatch => {
-    dispatch(coursesAllRequest)
+export const getCourses = () => {
+    return dispatch => {
+        dispatch(coursesAllRequest())
 
-    http.get('courses')
-       .then(response => {
-           const { data: { payload } } = response;
-           dispatch(coursesRequestSuccess(payload))
-       })
-       .catch(error => console.log('error', error))
+        http.get('courses')
+           .then(response => {
+               const { data: { payload } } = response;
+               dispatch(coursesResponseSuccess(payload))
+           })
+           .catch(error => dispatch(coursesResponseFailure(error)))
+    }
 }

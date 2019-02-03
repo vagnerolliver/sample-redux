@@ -1,22 +1,16 @@
-import { coursesRequestSuccess, coursesAllRequest, coursesRequestFailure } from "./actions";
+import { coursesFailure, coursesRequest, coursesSuccess } from "./actions";
 
 const coursesReducers = (state = [], action) => {
     switch (action.type) {
-        case coursesAllRequest:
-            return {
-                ...state,
-                loading: true
-            }
-        case coursesRequestSuccess:
-            return {
+        case coursesRequest:
+            return  state
+        case coursesSuccess:
+            return [...action.payload]
+        case coursesFailure:
+            return Object.assign({}, state, {
                 ...action.payload,
-                loading: false
-            }
-        case coursesRequestFailure:
-            return {
-                ...action.payload,
-                loading: false
-            }
+                isLoading: false,
+            })
 
         default:
             return state

@@ -3,13 +3,19 @@ import { coursesFailure, coursesRequest, coursesSuccess } from "./actions";
 const coursesReducers = (state = [], action) => {
     switch (action.type) {
         case coursesRequest:
-            return  state
+            return  {
+                ...state,
+                isLoading: false
+            }
         case coursesSuccess:
-            return [...action.payload]
-        case coursesFailure:
             return Object.assign({}, state, {
                 ...action.payload,
-                isLoading: false,
+                isLoading: true,
+            })
+        case coursesFailure:
+            return Object.assign({}, state, {
+                error: action.payload,
+                isLoading: true,
             })
 
         default:

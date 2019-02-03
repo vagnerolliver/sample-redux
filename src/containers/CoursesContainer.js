@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import CourseItem from '../components/Course/CourseItem'
 import CoursesList from '../components/Course/CoursesList'
+import { getAllCourses } from "../store/reducers";
 
 const mapStateToProps = state => ({
     courses: state.courses
@@ -9,10 +10,11 @@ const mapStateToProps = state => ({
 
 const CoursesContainer = ({courses}) => (
     <CoursesList title="Courses">
-        {courses.map(course =>
+        {Object.keys(courses).map(key =>
             <CourseItem
-                key={course.description}
-                course={course}/>
+                key={courses[key].description}
+                course={courses[key]}/>
+
         )}
     </CoursesList>
 )
